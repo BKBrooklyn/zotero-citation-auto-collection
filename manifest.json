@@ -3,7 +3,7 @@
   "name": "Citation Auto-Collection",
   "version": "0.1.2",
   "description": "Keeps a chosen Zotero collection in sync with references cited in Word.",
-  "author": "Bingkun Liu",
+  "author": "Brooklyn Liu",
   "applications": {
     "zotero": {
       "id": "citation-auto-collection@bingkunliu.local",

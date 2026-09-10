@@ -1,82 +1,93 @@
 # Citation Auto-Collection for Zotero
 
-Citation Auto-Collection keeps a selected Zotero collection in sync with the references cited in a Microsoft Word document.
+[![Latest release](https://img.shields.io/github/v/release/BKBrooklyn/zotero-citation-auto-collection)](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases/latest)
+![Zotero compatibility](https://img.shields.io/badge/Zotero-7--10-CC2936)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-After Zotero successfully inserts or edits a citation in Word, the cited items are automatically added to the selected collection. When a citation is deleted from Word, the corresponding item is removed from that collection the next time Zotero **Refresh** or **Add/Edit Citation** is used.
+**English** | [简体中文](docs/README.zh-CN.md)
 
-> Removing an item from the collection does **not** delete it from the Zotero library. The item, its attachments, and its notes remain untouched.
+## Abstract
+
+Citation Auto-Collection keeps a selected Zotero collection in sync with the references cited in Microsoft Word.
+
+After Zotero successfully inserts or edits a citation, the cited items are automatically added to the selected collection. When a citation is deleted from Word, the corresponding item is removed from that collection the next time Zotero **Refresh** or **Add/Edit Citation** is used.
+
+> [!IMPORTANT]
+> Removing an item from the collection does **not** delete it from the Zotero library. The item, attachments, and notes remain untouched.
 
 ## Features
 
-- Adds cited Zotero items only after a citation has been successfully written to Word.
-- Adds every item in a multi-item citation.
-- Synchronises an edited citation using its final list of references.
-- Removes items that are no longer cited after the next Zotero refresh or citation action.
-- Keeps an item in the collection while it is still cited elsewhere in the same document.
-- Tracks multiple Word documents that share the same target collection.
-- Avoids duplicate collection membership.
-- Skips items from a different Zotero library to prevent cross-library database errors.
-- Ignores **Add Note** and **Add Annotation** actions.
-- Restores the original Zotero integration methods when the plugin is disabled or uninstalled.
+| Word/Zotero action | Collection result |
+| --- | --- |
+| Insert a citation | Add every cited item |
+| Edit a citation | Synchronise the final item list |
+| Delete a citation, then click **Refresh** | Remove items no longer cited |
+| Cancel the citation dialog | Make no change |
+| Cite the same item more than once | Keep a single collection membership |
+| Cite an item from another library | Skip it safely |
+
+The plugin also tracks multiple Word documents that share a target collection. An item remains in the collection while any tracked document still cites it.
 
 ## Requirements
 
 - Zotero 7–10
 - Microsoft Word with the Zotero Word integration installed
 
-Version 0.1.2 was tested against the integration interfaces in Zotero 10.0.1. Because the plugin relies on internal Zotero integration methods, it should be retested after a major Zotero update.
+Version 0.1.2 was tested against Zotero 10.0.1 integration interfaces. The plugin uses internal Zotero integration methods, so a regression test is recommended after a major Zotero update.
 
 ## Installation
 
-1. Download `citation-auto-collection-0.1.2.xpi` from the [v0.1.2 release](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases/tag/v0.1.2).
+1. Download the `.xpi` file from the [latest release](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases/latest).
 2. In Zotero, open **Tools → Plugins**.
 3. Open the gear menu and select **Install Plugin From File…**.
 4. Select the downloaded `.xpi` file.
 5. Restart Zotero if prompted.
 
-## Setup and use
+## User Guide
 
-1. Select the collection you want to use in Zotero's left sidebar.
+### Choose a target collection
+
+1. Select the collection in Zotero's left sidebar.
 2. Open **Tools → Citation Auto-Collection**.
 3. Click **Use selected Collection**.
-4. In Word, use Zotero **Add/Edit Citation** as usual.
+4. Use Zotero **Add/Edit Citation** in Word as usual.
 
-Selecting a target collection automatically enables the plugin. The same Zotero menu can be used to pause or resume synchronisation.
+Choosing a target collection automatically enables synchronisation. Use the same Zotero menu to pause or resume it.
 
-### When a citation is deleted in Word
+### Synchronise a deleted citation
 
 Word does not notify Zotero at the moment a citation field is deleted. After deleting a citation:
 
 1. Open the **Zotero** tab in Word.
 2. Click **Refresh**.
 
-The plugin then reads the document's current citation state. An item is removed from the target collection only if it is no longer cited by any tracked document using that collection.
-
-## Data and privacy
-
-The plugin runs locally inside Zotero. It does not collect analytics, transmit document content, or send Zotero library data to an external service.
-
-It stores only the selected collection identifier, the enabled/disabled setting, notification preferences, and the minimum document state required for synchronisation in Zotero's local preferences.
+The plugin reads the document's current citations and removes only the collection memberships that are no longer required.
 
 ## Limitations
 
 - Microsoft Word is supported; LibreOffice and Google Docs are not processed.
-- Synchronisation is triggered by Zotero Word integration actions, not immediately when a Word field is deleted.
+- Deletion synchronisation runs during a Zotero Word integration action, not at the instant a Word field is deleted.
 - Items can only be added to a collection in the same Zotero library.
-- Automatic online updates are not currently configured. New versions must be installed manually.
+- Automatic online updates are not currently configured; install new versions manually.
 
 ## Troubleshooting
 
 If an item is not added or removed:
 
-1. Confirm that the correct target collection is selected in **Tools → Citation Auto-Collection**.
+1. Confirm the target collection under **Tools → Citation Auto-Collection**.
 2. Confirm that synchronisation is enabled.
 3. Click **Refresh** in the Zotero tab in Word.
-4. In Zotero, enable **Help → Debug Output Logging**, reproduce the issue, and search the log for `Citation Auto-Collection`.
+4. In Zotero, enable **Help → Debug Output Logging**, reproduce the issue, and search for `Citation Auto-Collection`.
 
 A collection synchronisation error will not undo or damage a citation that Word has already inserted successfully.
 
-## Development
+## Data and Privacy
+
+Citation Auto-Collection runs locally inside Zotero. It does not collect analytics, transmit document content, or send Zotero library data to an external service.
+
+It stores only the selected collection identifier, enabled state, notification preference, and the minimum document state required for synchronisation in Zotero's local preferences.
+
+## Developer Guide
 
 Build the installable package:
 
@@ -90,21 +101,21 @@ Run the simulated core-logic tests:
 node tests/run-tests.mjs
 ```
 
-The generated `.xpi` is intentionally excluded from Git. Release packages are distributed through [GitHub Releases](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases).
+The generated `.xpi` is excluded from Git. Installable packages are distributed through [GitHub Releases](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases).
 
-## Manual acceptance checklist
+### Implementation notes
 
-1. Create a test collection and set it as the target.
-2. Insert a reference that is not already in the collection; it should be added automatically.
-3. Cite the same item again; no duplicate or error should appear.
-4. Insert a citation containing two items; both should be added.
-5. Open and cancel the citation dialog; nothing should be added.
-6. Edit an existing citation and add another item; the new item should be added.
-7. Pause the plugin and insert a citation; nothing should be added.
-8. Cite an item from another library; it should be skipped safely.
-9. Delete the only citation of an item and click **Refresh**; the item should leave the collection but remain in the library.
-10. Cite an item twice, delete only one citation, and click **Refresh**; the item should remain in the collection.
+- Wraps `Zotero.Integration.Session.prototype.cite()` and the Word refresh flow.
+- Synchronises the collection after Zotero has read the document's citation state.
+- Checks the integration processor name and processes Microsoft Word only.
+- Restores Zotero's original integration methods when disabled or uninstalled.
 
-## Licence
+## Contributing
 
-This project is released under the [MIT License](LICENSE).
+Bug reports and focused pull requests are welcome. When reporting an integration problem, include the Zotero version, Word version, operating system, reproduction steps, and relevant Zotero debug output. Do not include private document content or library data.
+
+## License
+
+Copyright © 2026 Brooklyn Liu.
+
+Released under the [MIT License](LICENSE).
