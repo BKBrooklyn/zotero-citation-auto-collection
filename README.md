@@ -44,7 +44,7 @@ Version 1.0.0 was tested against Zotero 10.0.1 integration interfaces. The plugi
 5. Restart Zotero if prompted.
 
 > [!NOTE]
-> Version 1.0.0 uses the technical add-on ID `citation-auto-collection@brooklynliu.local`. If a pre-1.0 build is installed, uninstall it before installing 1.0.0 to prevent both add-ons from running at the same time. This does not delete Zotero items or collections.
+> Version 1.0.0 uses the technical add-on ID `citation-auto-collection@bkbrooklyn.github.io`. If a pre-1.0 build is installed, uninstall it before installing 1.0.0 to prevent both add-ons from running at the same time. This does not delete Zotero items or collections.
 
 ## User Guide
 

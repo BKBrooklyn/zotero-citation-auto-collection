@@ -44,7 +44,7 @@ Citation Auto-Collection 用于同步 Microsoft Word 文档中的 Zotero 引用�
 5. 如果 Zotero 提示，请重新启动。
 
 > [!NOTE]
-> 1.0.0 版使用技术性插件 ID `citation-auto-collection@brooklynliu.local`。如果已经安装 1.0.0 之前的测试版本，请先卸载旧版再安装 1.0.0，避免两个插件同时运行。卸载旧插件不会删除 Zotero 文献或 Collection。
+> 1.0.0 版使用技术性插件 ID `citation-auto-collection@bkbrooklyn.github.io`。如果已经安装 1.0.0 之前的测试版本，请先卸载旧版再安装 1.0.0，避免两个插件同时运行。卸载旧插件不会删除 Zotero 文献或 Collection。
 
 ## 使用指南
 

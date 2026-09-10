@@ -7,7 +7,7 @@ const manifest = JSON.parse(fs.readFileSync(new URL("../manifest.json", import.m
 
 assert.equal(manifest.manifest_version, 2);
 assert.equal(manifest.version, "1.0.0");
-assert.equal(manifest.applications?.zotero?.id, "citation-auto-collection@brooklynliu.local");
+assert.equal(manifest.applications?.zotero?.id, "citation-auto-collection@bkbrooklyn.github.io");
 assert.ok(manifest.applications?.zotero?.update_url);
 assert.ok(manifest.applications?.zotero?.strict_max_version);
 

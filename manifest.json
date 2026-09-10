@@ -6,7 +6,7 @@
   "author": "Brooklyn Liu",
   "applications": {
     "zotero": {
-      "id": "citation-auto-collection@brooklynliu.local",
+      "id": "citation-auto-collection@bkbrooklyn.github.io",
       "update_url": "https://updates.invalid/citation-auto-collection/updates.json",
       "strict_min_version": "7.0",
       "strict_max_version": "10.*"
