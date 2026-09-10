@@ -107,4 +107,4 @@ The generated `.xpi` is intentionally excluded from Git. Release packages are di
 
 ## Licence
 
-No open-source licence has been selected yet. Until a licence is added, the source code remains publicly viewable but is not granted for reuse, modification, or redistribution.
+This project is released under the [MIT License](LICENSE).
