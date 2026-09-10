@@ -33,7 +33,7 @@ Citation Auto-Collection 用于同步 Microsoft Word 文档中的 Zotero 引用�
 - Zotero 7–10
 - Microsoft Word，并已安装 Zotero Word 集成组件
 
-0.1.3 版已针对 Zotero 10.0.1 的集成接口进行测试。插件使用 Zotero 内部接口，Zotero 大版本升级后建议重新进行回归测试。
+1.0.0 版已针对 Zotero 10.0.1 的集成接口进行测试。插件使用 Zotero 内部接口，Zotero 大版本升级后建议重新进行回归测试。
 
 ## 安装
 
@@ -44,7 +44,7 @@ Citation Auto-Collection 用于同步 Microsoft Word 文档中的 Zotero 引用�
 5. 如果 Zotero 提示，请重新启动。
 
 > [!NOTE]
-> 0.1.3 版将技术性插件 ID 改为 `citation-auto-collection@brooklynliu.local`。如果已经安装 0.1.2 或更早版本，请先卸载旧版再安装 0.1.3，避免两个插件同时运行。卸载旧插件不会删除 Zotero 文献或 Collection。
+> 1.0.0 版使用技术性插件 ID `citation-auto-collection@brooklynliu.local`。如果已经安装 1.0.0 之前的测试版本，请先卸载旧版再安装 1.0.0，避免两个插件同时运行。卸载旧插件不会删除 Zotero 文献或 Collection。
 
 ## 使用指南
 
