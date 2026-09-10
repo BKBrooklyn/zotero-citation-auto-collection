@@ -4,17 +4,31 @@ import vm from "node:vm";
 
 const source = fs.readFileSync(new URL("../citation-auto-collection.js", import.meta.url), "utf8");
 const manifest = JSON.parse(fs.readFileSync(new URL("../manifest.json", import.meta.url), "utf8"));
+const updateManifest = JSON.parse(fs.readFileSync(new URL("../updates.json", import.meta.url), "utf8"));
 
 assert.equal(manifest.manifest_version, 2);
-assert.equal(manifest.version, "1.0.1");
+assert.equal(manifest.version, "1.0.2");
 assert.equal(manifest.applications?.zotero?.id, "citation-auto-collection@bkbrooklyn.github.io");
 assert.equal(manifest.homepage_url, "https://github.com/BKBrooklyn/zotero-citation-auto-collection");
 assert.equal(manifest.icons?.["48"], "icons/icon-48.png");
 for (const iconPath of Object.values(manifest.icons || {})) {
 	assert.ok(fs.existsSync(new URL(`../${iconPath}`, import.meta.url)), `Missing icon: ${iconPath}`);
 }
-assert.ok(manifest.applications?.zotero?.update_url);
+assert.equal(
+	manifest.applications?.zotero?.update_url,
+	"https://raw.githubusercontent.com/BKBrooklyn/zotero-citation-auto-collection/main/updates.json",
+);
 assert.ok(manifest.applications?.zotero?.strict_max_version);
+
+const update = updateManifest.addons?.[manifest.applications.zotero.id]?.updates?.[0];
+assert.equal(update?.version, manifest.version);
+assert.equal(
+	update?.update_link,
+	"https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases/download/v1.0.2/citation-auto-collection-1.0.2.xpi",
+);
+assert.match(update?.update_hash || "", /^sha256:[a-f0-9]{64}$/);
+assert.equal(update?.applications?.zotero?.strict_min_version, manifest.applications.zotero.strict_min_version);
+assert.equal(update?.applications?.zotero?.strict_max_version, manifest.applications.zotero.strict_max_version);
 
 function makeHarness({ enabled = true, targetExists = true } = {}) {
 	const prefs = new Map([

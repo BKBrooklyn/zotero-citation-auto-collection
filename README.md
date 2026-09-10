@@ -39,7 +39,7 @@ The plugin also tracks multiple Word documents that share a target collection. A
 - Zotero 7–10
 - Microsoft Word with the Zotero Word integration installed
 
-Version 1.0.1 was tested against Zotero 10.0.1 integration interfaces. The plugin uses internal Zotero integration methods, so a regression test is recommended after a major Zotero update.
+Version 1.0.2 was tested against Zotero 10.0.1 integration interfaces. The plugin uses internal Zotero integration methods, so a regression test is recommended after a major Zotero update.
 
 ## Installation
 
@@ -63,6 +63,12 @@ Version 1.0.1 was tested against Zotero 10.0.1 integration interfaces. The plugi
 
 Choosing a target collection automatically enables synchronisation. Use the same Zotero menu to pause or resume it.
 
+### Automatic updates
+
+Automatic update support starts with version 1.0.2. Because earlier releases used a placeholder update address, install 1.0.2 manually once. Zotero can then discover later compatible releases through the update manifest hosted in this repository.
+
+To check manually, open **Tools → Plugins**, open the gear menu, and choose **Check for Updates**. Leave **Allow automatic updates** set to **Default** or **On**.
+
 ### Synchronise a deleted citation
 
 Word does not notify Zotero at the moment a citation field is deleted. After deleting a citation:
@@ -77,7 +83,7 @@ The plugin reads the document's current citations and removes only the collectio
 - Microsoft Word is supported; LibreOffice and Google Docs are not processed.
 - Deletion synchronisation runs during a Zotero Word integration action, not at the instant a Word field is deleted.
 - Items can only be added to a collection in the same Zotero library.
-- Automatic online updates are not currently configured; install new versions manually.
+- Releases older than 1.0.2 cannot discover updates and must be upgraded manually once.
 
 ## Troubleshooting
 
@@ -111,6 +117,8 @@ node tests/run-tests.mjs
 ```
 
 The generated `.xpi` is excluded from Git. Installable packages are distributed through [GitHub Releases](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases).
+
+For every release, update `manifest.json`, build the XPI, and update `updates.json` with the same version, public download URL, compatibility range, and SHA-256 digest before publishing the tag.
 
 ### Implementation notes
 

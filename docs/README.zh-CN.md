@@ -39,7 +39,7 @@ Citation Auto-Collection 用于同步 Microsoft Word 文档中的 Zotero 引用�
 - Zotero 7–10
 - Microsoft Word，并已安装 Zotero Word 集成组件
 
-1.0.1 版已针对 Zotero 10.0.1 的集成接口进行测试。插件使用 Zotero 内部接口，Zotero 大版本升级后建议重新进行回归测试。
+1.0.2 版已针对 Zotero 10.0.1 的集成接口进行测试。插件使用 Zotero 内部接口，Zotero 大版本升级后建议重新进行回归测试。
 
 ## 安装
 
@@ -63,6 +63,12 @@ Citation Auto-Collection 用于同步 Microsoft Word 文档中的 Zotero 引用�
 
 选定目标 Collection 后，同步功能会自动启用。可以在同一菜单中暂停或恢复。
 
+### 自动更新
+
+自动更新从 1.0.2 版开始支持。由于此前版本使用的是占位更新地址，需要手动安装一次 1.0.2；此后 Zotero 可以通过本仓库托管的更新清单检测后续兼容版本。
+
+如需手动检查，请打开 **Tools → Plugins**，点击齿轮菜单并选择 **Check for Updates**。请将 **Allow automatic updates** 保持为 **Default** 或 **On**。
+
 ### 同步从 Word 删除的引文
 
 Word 不会在删除引文字段的瞬间通知 Zotero。删除引文后：
@@ -77,7 +83,7 @@ Word 不会在删除引文字段的瞬间通知 Zotero。删除引文后：
 - 当前仅处理 Microsoft Word，不处理 LibreOffice 或 Google Docs。
 - 删除同步由 Zotero Word 集成操作触发，并非在删除 Word 字段的瞬间执行。
 - 文献只能加入同一个 Zotero library 内的 Collection。
-- 当前未配置在线自动更新；新版本需要手动安装。
+- 1.0.2 之前的版本无法检测更新，需要手动升级一次。
 
 ## 故障排查
 
@@ -111,6 +117,8 @@ node tests/run-tests.mjs
 ```
 
 生成的 `.xpi` 不提交到 Git，而是通过 [GitHub Releases](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases) 分发。
+
+每次发布前，应同步更新 `manifest.json` 和 `updates.json` 中的版本号、公开下载地址、兼容范围与 XPI 的 SHA-256，并确认它们与 Release 完全一致。
 
 ## 参与贡献
 

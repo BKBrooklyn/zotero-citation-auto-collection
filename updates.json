@@ -1,0 +1,19 @@
+{
+  "addons": {
+    "citation-auto-collection@bkbrooklyn.github.io": {
+      "updates": [
+        {
+          "version": "1.0.2",
+          "update_link": "https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases/download/v1.0.2/citation-auto-collection-1.0.2.xpi",
+          "update_hash": "sha256:a8b5e4d704633e842d702f8134d06b659e7bb7c36ba7a57a4a353c6dd4283fff",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "7.0",
+              "strict_max_version": "10.*"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
