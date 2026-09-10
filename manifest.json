@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Citation Auto-Collection",
+  "version": "0.1.2",
+  "description": "Keeps a chosen Zotero collection in sync with references cited in Word.",
+  "author": "Bingkun Liu",
+  "applications": {
+    "zotero": {
+      "id": "citation-auto-collection@bingkunliu.local",
+      "update_url": "https://updates.invalid/citation-auto-collection/updates.json",
+      "strict_min_version": "7.0",
+      "strict_max_version": "10.*"
+    }
+  }
+}
