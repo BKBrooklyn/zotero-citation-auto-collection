@@ -1,60 +1,110 @@
-# Citation Auto-Collection
+# Citation Auto-Collection for Zotero
 
-插件将 Word 文档中的 Zotero 引用与指定 Collection 同步：新增引用会自动加入；删除引用后，在下一次 Zotero Word 操作时会自动从 Collection 移除。
+Citation Auto-Collection keeps a selected Zotero collection in sync with the references cited in a Microsoft Word document.
 
-## 当前功能
+After Zotero successfully inserts or edits a citation in Word, the cited items are automatically added to the selected collection. When a citation is deleted from Word, the corresponding item is removed from that collection the next time Zotero **Refresh** or **Add/Edit Citation** is used.
 
-- 仅在引用成功写入 Word 后处理；取消引用不会触发。
-- 一条引文含多篇文献时，会添加全部文献。
-- 编辑已有引文时，以编辑完成后的文献列表为准。
-- 从 Word 删除引用后，点击 Word 中的 Zotero **Refresh**，对应文献会从目标 Collection 移除。
-- 如果同一文献仍在该 Word 文档其他位置被引用，则不会移除。
-- 多个已跟踪 Word 文档共用目标 Collection 时，只要其中一个文档仍引用该文献，就会保留。
-- “移除”仅解除 Collection 归属，不会删除 Zotero library 中的文献本体或附件。
-- 已在目标 Collection 中的文献不会重复添加。
-- 只在同一个 Zotero library 内添加；跨 library 文献会跳过，避免数据库错误。
-- 不处理 Add Note 和 Add Annotation。
-- 禁用或卸载插件时会还原 Zotero integration 方法。
+> Removing an item from the collection does **not** delete it from the Zotero library. The item, its attachments, and its notes remain untouched.
 
-## 安装
+## Features
 
-1. 运行 `./build.sh`，或直接使用同目录生成的 `citation-auto-collection-0.1.2.xpi`。
-2. Zotero → Tools → Plugins。
-3. 点击齿轮菜单 → Install Plugin From File…。
-4. 选择 `citation-auto-collection-0.1.2.xpi`。
+- Adds cited Zotero items only after a citation has been successfully written to Word.
+- Adds every item in a multi-item citation.
+- Synchronises an edited citation using its final list of references.
+- Removes items that are no longer cited after the next Zotero refresh or citation action.
+- Keeps an item in the collection while it is still cited elsewhere in the same document.
+- Tracks multiple Word documents that share the same target collection.
+- Avoids duplicate collection membership.
+- Skips items from a different Zotero library to prevent cross-library database errors.
+- Ignores **Add Note** and **Add Annotation** actions.
+- Restores the original Zotero integration methods when the plugin is disabled or uninstalled.
 
-## 使用
+## Requirements
 
-1. 在 Zotero 左侧栏选中目标 Collection。
-2. Zotero → Tools → Citation Auto-Collection。
-3. 点击 **将当前 Collection 设为目标 / Use selected Collection**。
-4. 在 Word 中照常使用 Zotero Add/Edit Citation。
+- Zotero 7–10
+- Microsoft Word with the Zotero Word integration installed
 
-设定目标后插件会自动启用。可在同一菜单暂停或恢复。直接在 Word 中删除引用域后，请点击 Zotero **Refresh** 触发同步；Word 本身不会在按 Delete 的瞬间通知 Zotero。
+Version 0.1.2 was tested against the integration interfaces in Zotero 10.0.1. Because the plugin relies on internal Zotero integration methods, it should be retested after a major Zotero update.
 
-## 兼容性与实现说明
+## Installation
 
-- 当前版本针对本机 Zotero 10.0.1 验证源码接口，并声明兼容 Zotero 7–10。
-- Zotero 10 要求清单包含 `update_url`。当前使用不可解析的 `.invalid` 占位地址，不会从网络安装更新；新版本仍需手动安装。
-- 插件包装 `Zotero.Integration.Session.prototype.cite()` 和 Word Refresh 流程，在 Zotero 完成读取整份文档的引用状态后同步 Collection。
-- 这是 Zotero 内部接口，不属于稳定的公开插件 API。Zotero 大版本更新后应重新做一次 Word 实机回归测试。
-- 插件会检查 integration processor 名称，仅处理 Microsoft Word，不处理 LibreOffice 或 Google Docs。
+1. Download `citation-auto-collection-0.1.2.xpi` from the [v0.1.2 release](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases/tag/v0.1.2).
+2. In Zotero, open **Tools → Plugins**.
+3. Open the gear menu and select **Install Plugin From File…**.
+4. Select the downloaded `.xpi` file.
+5. Restart Zotero if prompted.
 
-## 手工验收清单
+## Setup and use
 
-1. 新建测试 Collection 并设为目标。
-2. Word Add/Edit Citation 插入一篇不在该 Collection 的文献：应自动加入。
-3. 再次引用同一篇：Collection 不应出现重复项，也不应报错。
-4. 在一条引文中插入两篇：两篇均应加入。
-5. 打开引用对话框后取消：不应加入任何文献。
-6. 编辑已有引文并新增一篇：新增文献应加入。
-7. 暂停插件后插入：不应加入。
-8. 引用其他 group library 的文献：若目标 Collection 不在该 library，应安全跳过。
-9. 在 Word 中删除唯一的一处引用并点击 Zotero Refresh：对应文献应从 Collection 移除，但仍保留在 library 中。
-10. 同一文献在 Word 中有两处引用，只删除一处并 Refresh：文献应继续保留在 Collection 中。
+1. Select the collection you want to use in Zotero's left sidebar.
+2. Open **Tools → Citation Auto-Collection**.
+3. Click **Use selected Collection**.
+4. In Word, use Zotero **Add/Edit Citation** as usual.
 
-## 调试
+Selecting a target collection automatically enables the plugin. The same Zotero menu can be used to pause or resume synchronisation.
 
-在 Zotero 的 Help → Debug Output Logging 中启用日志，搜索 `Citation Auto-Collection`。自动加入失败不会撤销或破坏已经成功插入 Word 的引文。
+### When a citation is deleted in Word
 
-开发时可运行 `node tests/run-tests.mjs` 执行核心逻辑的模拟测试。
+Word does not notify Zotero at the moment a citation field is deleted. After deleting a citation:
+
+1. Open the **Zotero** tab in Word.
+2. Click **Refresh**.
+
+The plugin then reads the document's current citation state. An item is removed from the target collection only if it is no longer cited by any tracked document using that collection.
+
+## Data and privacy
+
+The plugin runs locally inside Zotero. It does not collect analytics, transmit document content, or send Zotero library data to an external service.
+
+It stores only the selected collection identifier, the enabled/disabled setting, notification preferences, and the minimum document state required for synchronisation in Zotero's local preferences.
+
+## Limitations
+
+- Microsoft Word is supported; LibreOffice and Google Docs are not processed.
+- Synchronisation is triggered by Zotero Word integration actions, not immediately when a Word field is deleted.
+- Items can only be added to a collection in the same Zotero library.
+- Automatic online updates are not currently configured. New versions must be installed manually.
+
+## Troubleshooting
+
+If an item is not added or removed:
+
+1. Confirm that the correct target collection is selected in **Tools → Citation Auto-Collection**.
+2. Confirm that synchronisation is enabled.
+3. Click **Refresh** in the Zotero tab in Word.
+4. In Zotero, enable **Help → Debug Output Logging**, reproduce the issue, and search the log for `Citation Auto-Collection`.
+
+A collection synchronisation error will not undo or damage a citation that Word has already inserted successfully.
+
+## Development
+
+Build the installable package:
+
+```sh
+./build.sh
+```
+
+Run the simulated core-logic tests:
+
+```sh
+node tests/run-tests.mjs
+```
+
+The generated `.xpi` is intentionally excluded from Git. Release packages are distributed through [GitHub Releases](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases).
+
+## Manual acceptance checklist
+
+1. Create a test collection and set it as the target.
+2. Insert a reference that is not already in the collection; it should be added automatically.
+3. Cite the same item again; no duplicate or error should appear.
+4. Insert a citation containing two items; both should be added.
+5. Open and cancel the citation dialog; nothing should be added.
+6. Edit an existing citation and add another item; the new item should be added.
+7. Pause the plugin and insert a citation; nothing should be added.
+8. Cite an item from another library; it should be skipped safely.
+9. Delete the only citation of an item and click **Refresh**; the item should leave the collection but remain in the library.
+10. Cite an item twice, delete only one citation, and click **Refresh**; the item should remain in the collection.
+
+## Licence
+
+No open-source licence has been selected yet. Until a licence is added, the source code remains publicly viewable but is not granted for reuse, modification, or redistribution.
