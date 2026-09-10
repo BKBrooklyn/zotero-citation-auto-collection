@@ -1,10 +1,16 @@
-# Citation Auto-Collection for Zotero
+<p align="center">
+  <img src="assets/logo.png" width="160" alt="Citation Auto-Collection logo">
+</p>
+
+<h1 align="center">Citation Auto-Collection for Zotero</h1>
 
 [![Latest release](https://img.shields.io/github/v/release/BKBrooklyn/zotero-citation-auto-collection)](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases/latest)
 ![Zotero compatibility](https://img.shields.io/badge/Zotero-7--10-CC2936)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **English** | [简体中文](docs/README.zh-CN.md)
+
+**Homepage:** https://github.com/BKBrooklyn/zotero-citation-auto-collection
 
 ## Abstract
 
@@ -33,7 +39,7 @@ The plugin also tracks multiple Word documents that share a target collection. A
 - Zotero 7–10
 - Microsoft Word with the Zotero Word integration installed
 
-Version 1.0.0 was tested against Zotero 10.0.1 integration interfaces. The plugin uses internal Zotero integration methods, so a regression test is recommended after a major Zotero update.
+Version 1.0.1 was tested against Zotero 10.0.1 integration interfaces. The plugin uses internal Zotero integration methods, so a regression test is recommended after a major Zotero update.
 
 ## Installation
 

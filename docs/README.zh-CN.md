@@ -1,10 +1,16 @@
-# Citation Auto-Collection for Zotero
+<p align="center">
+  <img src="../assets/logo.png" width="160" alt="Citation Auto-Collection Logo">
+</p>
+
+<h1 align="center">Citation Auto-Collection for Zotero</h1>
 
 [![最新版本](https://img.shields.io/github/v/release/BKBrooklyn/zotero-citation-auto-collection)](https://github.com/BKBrooklyn/zotero-citation-auto-collection/releases/latest)
 ![Zotero 兼容性](https://img.shields.io/badge/Zotero-7--10-CC2936)
 [![许可证：MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../LICENSE)
 
 [English](../README.md) | **简体中文**
+
+**项目主页：** https://github.com/BKBrooklyn/zotero-citation-auto-collection
 
 ## 简介
 
@@ -33,7 +39,7 @@ Citation Auto-Collection 用于同步 Microsoft Word 文档中的 Zotero 引用�
 - Zotero 7–10
 - Microsoft Word，并已安装 Zotero Word 集成组件
 
-1.0.0 版已针对 Zotero 10.0.1 的集成接口进行测试。插件使用 Zotero 内部接口，Zotero 大版本升级后建议重新进行回归测试。
+1.0.1 版已针对 Zotero 10.0.1 的集成接口进行测试。插件使用 Zotero 内部接口，Zotero 大版本升级后建议重新进行回归测试。
 
 ## 安装
 

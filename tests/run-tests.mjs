@@ -6,8 +6,13 @@ const source = fs.readFileSync(new URL("../citation-auto-collection.js", import.
 const manifest = JSON.parse(fs.readFileSync(new URL("../manifest.json", import.meta.url), "utf8"));
 
 assert.equal(manifest.manifest_version, 2);
-assert.equal(manifest.version, "1.0.0");
+assert.equal(manifest.version, "1.0.1");
 assert.equal(manifest.applications?.zotero?.id, "citation-auto-collection@bkbrooklyn.github.io");
+assert.equal(manifest.homepage_url, "https://github.com/BKBrooklyn/zotero-citation-auto-collection");
+assert.equal(manifest.icons?.["48"], "icons/icon-48.png");
+for (const iconPath of Object.values(manifest.icons || {})) {
+	assert.ok(fs.existsSync(new URL(`../${iconPath}`, import.meta.url)), `Missing icon: ${iconPath}`);
+}
 assert.ok(manifest.applications?.zotero?.update_url);
 assert.ok(manifest.applications?.zotero?.strict_max_version);
 
