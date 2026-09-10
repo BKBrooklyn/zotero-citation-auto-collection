@@ -33,7 +33,7 @@ The plugin also tracks multiple Word documents that share a target collection. A
 - Zotero 7–10
 - Microsoft Word with the Zotero Word integration installed
 
-Version 0.1.2 was tested against Zotero 10.0.1 integration interfaces. The plugin uses internal Zotero integration methods, so a regression test is recommended after a major Zotero update.
+Version 0.1.3 was tested against Zotero 10.0.1 integration interfaces. The plugin uses internal Zotero integration methods, so a regression test is recommended after a major Zotero update.
 
 ## Installation
 
@@ -42,6 +42,9 @@ Version 0.1.2 was tested against Zotero 10.0.1 integration interfaces. The plugi
 3. Open the gear menu and select **Install Plugin From File…**.
 4. Select the downloaded `.xpi` file.
 5. Restart Zotero if prompted.
+
+> [!NOTE]
+> Version 0.1.3 changes the technical add-on ID to `citation-auto-collection@brooklynliu.local`. If version 0.1.2 or earlier is installed, uninstall it before installing 0.1.3 to prevent both add-ons from running at the same time. This does not delete Zotero items or collections.
 
 ## User Guide
 

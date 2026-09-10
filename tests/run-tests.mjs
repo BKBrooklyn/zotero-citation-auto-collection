@@ -6,8 +6,8 @@ const source = fs.readFileSync(new URL("../citation-auto-collection.js", import.
 const manifest = JSON.parse(fs.readFileSync(new URL("../manifest.json", import.meta.url), "utf8"));
 
 assert.equal(manifest.manifest_version, 2);
-assert.equal(manifest.version, "0.1.2");
-assert.ok(manifest.applications?.zotero?.id);
+assert.equal(manifest.version, "0.1.3");
+assert.equal(manifest.applications?.zotero?.id, "citation-auto-collection@brooklynliu.local");
 assert.ok(manifest.applications?.zotero?.update_url);
 assert.ok(manifest.applications?.zotero?.strict_max_version);
 

@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
   "name": "Citation Auto-Collection",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Keeps a chosen Zotero collection in sync with references cited in Word.",
   "author": "Brooklyn Liu",
   "applications": {
     "zotero": {
-      "id": "citation-auto-collection@bingkunliu.local",
+      "id": "citation-auto-collection@brooklynliu.local",
       "update_url": "https://updates.invalid/citation-auto-collection/updates.json",
       "strict_min_version": "7.0",
       "strict_max_version": "10.*"
